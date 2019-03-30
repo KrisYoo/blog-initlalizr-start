@@ -1,0 +1,2 @@
+# blog-initlalizr-start
+MyBlog

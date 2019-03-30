@@ -24,6 +24,9 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private EsBlogService esBlogService;
 
+    @Autowired
+    private UserService userService;
+
     @Transactional
     @Override
     public Blog saveBlog(Blog blog) {
@@ -31,12 +34,19 @@ public class BlogServiceImpl implements BlogService {
         EsBlog esBlog = null;
 
         Blog returnBlog = blogRepository.save(blog);
+        String username = returnBlog.getUser().getUsername();
+        System.out.println("asfagfasgagheqghadga----"+username);
+        User user = userService.getUserByUserName(username);
+        String avatarUml = user.getAvatar();
+        System.out.println("----------------"+avatarUml);
 
         if(isNew) {
             esBlog = new EsBlog(returnBlog);
+            esBlog.setAvatar(avatarUml);
         } else {
             esBlog = esBlogService.getEsBlogByBlogId(blog.getId());
             esBlog.update(returnBlog);
+            esBlog.setAvatar(avatarUml);
         }
 
         esBlogService.updateEsBlog(esBlog);

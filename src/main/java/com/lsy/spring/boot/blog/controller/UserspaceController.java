@@ -6,6 +6,7 @@ import com.lsy.spring.boot.blog.domain.User;
 import com.lsy.spring.boot.blog.domain.Vote;
 import com.lsy.spring.boot.blog.service.BlogService;
 import com.lsy.spring.boot.blog.service.CatalogService;
+import com.lsy.spring.boot.blog.service.EsBlogService;
 import com.lsy.spring.boot.blog.service.UserService;
 import com.lsy.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.lsy.spring.boot.blog.vo.Response;
@@ -52,6 +53,9 @@ public class UserspaceController {
 
     @Value("${file.server.url}")
     private String fileServerUrl;
+
+    @Autowired
+    private EsBlogService esBlogService;
 
     /**
      * 主页面
@@ -137,7 +141,6 @@ public class UserspaceController {
         User originalUser = userService.getUserById(user.getId());
         originalUser.setAvatar(avatarUrl);
         userService.saveOrUpdateUser(originalUser);
-
         return ResponseEntity.ok().body(new Response(true, "处理成功", avatarUrl));
     }
 

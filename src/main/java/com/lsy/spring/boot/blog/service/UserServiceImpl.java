@@ -72,4 +72,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<User> listUsersByUsernames(Collection<String> usernames) {
         return userRepository.findByUsernameIn(usernames);
     }
+
+    @Override
+    public User getUserByUserName(String username) {
+        return userRepository.findByUsername(username);
+    }
+
 }

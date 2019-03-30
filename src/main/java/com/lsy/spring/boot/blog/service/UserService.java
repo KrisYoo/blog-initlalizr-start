@@ -57,5 +57,7 @@ public interface UserService {
      */
     List<User> listUsersByUsernames(Collection<String> usernames);
 
+    User getUserByUserName(String username);
+
     boolean usernameExists(String username);
 }

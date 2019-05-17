@@ -92,4 +92,14 @@ public interface BlogService {
      * @return
      */
     Page<Blog> listBlogsByCatalog(Catalog catalog, Pageable pageable);
+
+    /**
+     * 获取所有博客
+     * @param pageable
+     * @return
+     */
+    Page<Blog> listAllBlogs(Pageable pageable);
+
+    void removeTags(Blog blog);
+
 }

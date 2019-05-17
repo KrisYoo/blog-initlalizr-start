@@ -1,6 +1,8 @@
 package com.lsy.spring.boot.blog.service;
 
 import com.lsy.spring.boot.blog.domain.Vote;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * vote 服务接口.

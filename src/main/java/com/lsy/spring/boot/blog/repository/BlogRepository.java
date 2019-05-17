@@ -40,4 +40,6 @@ public interface BlogRepository extends JpaRepository<Blog, Long> {
      */
     Page<Blog> findByCatalog(Catalog catalog, Pageable pageable);
 
+    Page<Blog> findBlogByCatalogId(Long id, Pageable pageable);
+
 }

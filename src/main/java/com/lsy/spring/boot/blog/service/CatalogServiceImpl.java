@@ -4,6 +4,8 @@ import com.lsy.spring.boot.blog.domain.Catalog;
 import com.lsy.spring.boot.blog.domain.User;
 import com.lsy.spring.boot.blog.repository.CatalogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,5 +44,11 @@ public class CatalogServiceImpl implements CatalogService {
     @Override
     public List<Catalog> listCatalogs(User user) {
         return catalogRepository.findByUser(user);
+    }
+
+    @Override
+    public Page<Catalog> listAllCatalogs(Pageable pageable) {
+        Page<Catalog> catalogs = catalogRepository.findAll(pageable);
+        return catalogs;
     }
 }

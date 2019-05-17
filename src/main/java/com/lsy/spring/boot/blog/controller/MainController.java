@@ -69,6 +69,10 @@ public class MainController {
             model.addAttribute("registerError", true);
             model.addAttribute("registerMsg", "注册失败，用户名已存在");
             return "register";
+        } if (userService.emailExists(user.getEmail())) {
+            model.addAttribute("registerError", true);
+            model.addAttribute("registerMsg", "注册失败，邮箱已存在");
+            return "register";
         } else {
             List<Authority> authorities = new ArrayList<>();
             authorities.add(authorityService.getAuthorityById(ROLE_USER_AUTHORITY_ID));

@@ -1,8 +1,5 @@
 /*!
  * blog.html 页面脚本.
- * 
- * @since: 1.0.0 2017-03-26
- * @author Way Lau <https://waylau.com>
  */
 "use strict";
 //# sourceURL=blog.js
@@ -164,6 +161,32 @@ $(function() {
 		    	 toastr.error("error!");
 		     }
 		 });
+	});
+
+	// 提交收藏
+	$(".blog-content-container").on("click","#submitCollect", function () {
+		// 获取 CSRF Token
+		var csrfToken = $("meta[name='_csrf']").attr("content");
+		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+
+		$.ajax({
+			url: '/u/collect',
+			type: 'POST',
+			data:{"blogId":blogId},
+			beforeSend: function(request) {
+				request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token
+			},
+			success: function(data){
+				if (data.success) {
+					toastr.info(data.message);
+				} else {
+					toastr.error(data.message);
+				}
+			},
+			error : function() {
+				toastr.error("error!");
+			}
+		});
 	});
 	
 	// 初始化 博客评论

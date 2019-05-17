@@ -3,6 +3,8 @@ package com.lsy.spring.boot.blog.service;
 import com.lsy.spring.boot.blog.domain.Vote;
 import com.lsy.spring.boot.blog.repository.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -28,4 +30,6 @@ public class VoteServiceImpl implements VoteService {
     public void removeVote(Long id) {
         voteRepository.delete(id);
     }
+
+
 }

@@ -2,6 +2,8 @@ package com.lsy.spring.boot.blog.service;
 
 import com.lsy.spring.boot.blog.domain.Catalog;
 import com.lsy.spring.boot.blog.domain.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -38,4 +40,11 @@ public interface CatalogService {
      * @return
      */
     List<Catalog> listCatalogs(User user);
+
+    /**
+     * 获取所有Catalog列表
+     * @param pageable
+     * @return
+     */
+    Page<Catalog> listAllCatalogs(Pageable pageable);
 }

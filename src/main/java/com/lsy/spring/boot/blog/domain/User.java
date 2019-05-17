@@ -46,6 +46,7 @@ public class User implements UserDetails {
     @Column(length = 200)
     private String avatar; // 头像图片地址
 
+
     @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))

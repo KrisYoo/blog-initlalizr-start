@@ -97,10 +97,11 @@
 
 			<div sec:authorize="isAuthenticated()"  class="row" >
 				<div class="dropdown">
-					<a class=" dropdown-toggle" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}" data-toggle="dropdown"><span sec:authentication="name"></span></a>
+					<a class=" dropdown-toggle" href="/u/lsy" th:href="@{'/u/' + ${#authentication.name}}" data-toggle="dropdown"><span sec:authentication="name"></span></a>
 					<div class="dropdown-menu" >
-						<a class=" dropdown-item" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}">个人主页</a>
-						<a class="dropdown-item" href="/u/waylau/profile" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" >个人设置</a>
+						<a class=" dropdown-item" href="/u/lsy" th:href="@{'/u/' + ${#authentication.name}}">个人主页</a>
+						<a class="dropdown-item" href="/u/lsy/profile" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" >个人设置</a>
+						<a th:if="${#authentication.name} eq 'admin'" class="dropdown-item" href="/admins" >管理员设置</a>
 					</div>
 				</div>
 				<div>

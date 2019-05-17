@@ -96,9 +96,9 @@ public class CatalogController {
         try {
             catalogService.removeCatalog(id);
         } catch (ConstraintViolationException e) {
-            return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
+            return ResponseEntity.ok().body(new Response(false, "不能删除此分类！"));
         } catch (Exception e) {
-            return ResponseEntity.ok().body(new Response(false, e.getMessage()));
+            return ResponseEntity.ok().body(new Response(false, "请先删除带有本分类的博客！"));
         }
         return ResponseEntity.ok().body(new Response(true, "处理成功", null));
     }

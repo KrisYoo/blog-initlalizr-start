@@ -1,13 +1,7 @@
 package com.lsy.spring.boot.blog.controller;
 
-import com.lsy.spring.boot.blog.domain.Blog;
-import com.lsy.spring.boot.blog.domain.Catalog;
-import com.lsy.spring.boot.blog.domain.User;
-import com.lsy.spring.boot.blog.domain.Vote;
-import com.lsy.spring.boot.blog.service.BlogService;
-import com.lsy.spring.boot.blog.service.CatalogService;
-import com.lsy.spring.boot.blog.service.EsBlogService;
-import com.lsy.spring.boot.blog.service.UserService;
+import com.lsy.spring.boot.blog.domain.*;
+import com.lsy.spring.boot.blog.service.*;
 import com.lsy.spring.boot.blog.util.ConstraintViolationExceptionHandler;
 import com.lsy.spring.boot.blog.vo.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -342,4 +336,51 @@ public class UserspaceController {
         String redirectUrl = "/u/" + username + "/blogs";
         return ResponseEntity.ok().body(new Response(true, "处理成功", redirectUrl));
     }
+
+//    /**
+//     * 收藏博客
+//     * @param blogId
+//     * @return
+//     */
+//    @PostMapping("/collect")
+//    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")  // 指定角色权限才能操作方法
+//    public ResponseEntity<Response> createCollect(Long blogId) {
+//        try {
+//            blogService.createCollect(blogId);
+//        } catch (ConstraintViolationException e) {
+//            return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
+//        } catch (Exception e) {
+//            return ResponseEntity.ok().body(new Response(false, e.getMessage()));
+//        }
+//        return ResponseEntity.ok().body(new Response(true, "收藏成功", null));
+//    }
+//
+//    @GetMapping("/{username}/collect")
+//    public String listBlogsByCollect(@PathVariable("username") String username,
+//                                     @RequestParam(value = "async",required = false) boolean async,
+//                                     @RequestParam(value = "pageIndex",required = false,defaultValue = "0") int pageIndex,
+//                                     @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
+//                                     Model model) throws Exception {
+//        Pageable pageable = new PageRequest(pageIndex, pageSize);
+//        User user = (User) userDetailsService.loadUserByUsername(username);
+//        List<Collect> collects = collectService.listCollectByUserId(user.getId());
+//        Page<Blog> page = null;
+//        for (int i = 0; i < collects.size(); i++) {
+//            page = blogService.listBlogsByCollectId(collects.get(i).getId(), pageable);
+//        }
+//        List<Blog> blogs = page.getContent();
+//        // 判断操作用户是否是分类的所有者
+////        boolean isBlogsOwner = false;
+////        if (SecurityContextHolder.getContext().getAuthentication() !=null && SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
+////                &&  !SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString().equals("anonymousUser")) {
+////            User principal = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+////            if (principal !=null && user.getUsername().equals(principal.getUsername())) {
+////                isBlogsOwner = true;
+////            }
+////        }
+//        model.addAttribute("page", page);
+//        //model.addAttribute("isblogsOwner", isBlogsOwner);
+//        model.addAttribute("blogList", blogs);
+//        return (async == true?"/userspace/u :: #mainContainerRepleace":"/userspace/u");
+//    }
 }

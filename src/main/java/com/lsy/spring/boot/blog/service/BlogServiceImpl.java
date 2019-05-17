@@ -114,7 +114,7 @@ public class BlogServiceImpl implements BlogService {
         Vote vote = new Vote(user);
         boolean isExist = originalBlog.addVote(vote);
         if (isExist) {
-            throw new IllegalArgumentException("该用户已经点过赞了");
+            throw new IllegalArgumentException("已经点过赞了");
         }
         return blogRepository.save(originalBlog);
     }
@@ -131,4 +131,18 @@ public class BlogServiceImpl implements BlogService {
         Page<Blog> blogs = blogRepository.findByCatalog(catalog, pageable);
         return blogs;
     }
+
+    @Override
+    public Page<Blog> listAllBlogs(Pageable pageable) {
+        Page<Blog> blogs = blogRepository.findAll(pageable);
+        return blogs;
+    }
+
+    @Override
+    public void removeTags(Blog blog) {
+        blogRepository.save(blog);
+    }
+
+
+
 }

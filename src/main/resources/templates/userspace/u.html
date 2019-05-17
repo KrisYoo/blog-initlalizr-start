@@ -84,6 +84,10 @@
                     <a class="nav-link" data-th-classappend="${order} eq 'hot' ? 'active' : ''" href="javascript:void(0)" th:attr="url='/u/'+${user.username}+'/blogs?order=hot'">最热</a>
                 </li>
 
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link"  href="javascript:void(0)" th:attr="url='/u/'+${user.username}+'/collect'" >我的收藏</a>-->
+<!--                </li>-->
+
                 <form class="form-inline mt-2 mt-md-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="搜索" id="keyword">
                     <a href="javascript:void(0)" class="btn btn-outline-secondary my-2 my-sm-0" id="searchBlogs"><i class="fa fa-search"
@@ -106,12 +110,10 @@
                                     OAuth 2.0 认证的原理与实践
                                 </a>
                             </h2>
-                            <p class="card-text" th:text="${blog.summary}">使用 OAuth 2.0 认证的的好处是显然易见的。你只需要用同一个账号密码，就能在各个网站进行访问，而免去了在每个网站都进行注册的繁琐过程。 本文将介绍
-                                OAuth 2.0 的原理，并基于 Spring Security 和 GitHub 账号，来演示 OAuth 2.0 的认证的过程。</p>
+                            <p class="card-text" th:text="${blog.summary}"></p>
                             <div class="card-text">
                                 发表于 [[${#dates.format(blog.createTime, 'yyyy-MM-dd HH:mm')}]] <i class="fa fa-eye" aria-hidden="true">[[${blog.readSize}]]</i>
-                                <i class="fa fa-heart-o" aria-hidden="true">[[${blog.voteSize}]]</i> <i class="fa fa-comment-o"
-                                                                                                        aria-hidden="true">[[${blog.commentSize}]]</i>
+                                <i class="fa fa-heart-o" aria-hidden="true">[[${blog.voteSize}]]</i> <i class="fa fa-comment-o" aria-hidden="true">[[${blog.commentSize}]]</i>
                             </div>
                         </div>
                     </div>

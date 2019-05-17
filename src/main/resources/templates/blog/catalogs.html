@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<div id="mainContainer" class="container">
+    <div id="mainContainerRepleace" class="row">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th data-field="id">分类ID</th>
+                <th data-field="name">分类名称</th>
+                <th data-field="username">创建用户</th>
+                <th data-field="operation">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="catalogs : ${adminCatalogs}">
+                <td th:text="${catalogs.id}">1</td>
+                <td th:text="${catalogs.name}">1</td>
+                <td th:text="${catalogs.user.name}">1</td>
+                <td>
+                    <div>
+                        <a class="catalogs-delete-admin" role="button"
+                           th:attr="catalogId=*{catalogs.id}"> <i class="fa fa-times"
+                                                           aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+        <div th:replace="~{fragments/page :: page}">...</div>
+
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script src="../../js/userspace/catalogs.js" th:src="@{/js/userspace/catalogs.js}"></script>

@@ -9,6 +9,7 @@ $(function() {
 
 	var _pageSize; // 存储用于搜索
 	var catalogId;
+	var collectId;
 
 	// 根据用户名、页面索引、页面大小获取用户列表
 	function getBlogsByName(pageIndex, pageSize) {
@@ -36,9 +37,34 @@ $(function() {
 		});
 	}
 
+	// // 根据用户名、页面索引、页面大小获取用户列表
+	// function getBlogsByCollect(pageIndex, pageSize) {
+	// 	$.ajax({
+	// 		url: "/u/"+  username  +"/collect",
+	// 		contentType : 'application/json',
+	// 		data:{
+	// 			"async":true,
+	// 			"pageIndex":pageIndex,
+	// 			"pageSize":pageSize,
+	// 			"collect":collectId,
+	// 		},
+	// 		success: function(data){
+	// 			$("#mainContainer").html(data);
+	// 			if (collectId) {
+	// 				$(".nav-item .nav-link").removeClass("active");
+	// 			}
+	//
+	// 			},
+	// 		error : function() {
+	// 			toastr.error("erroddr!");
+	// 		}
+	// 	});
+	// }
+
 	// 分页
 	$.tbpage("#mainContainer", function (pageIndex, pageSize) {
 		getBlogsByName(pageIndex, pageSize);
+		getBlogsByCollect(pageIndex, pageSize);
 		_pageSize = pageSize;
 	});
 
@@ -63,7 +89,7 @@ $(function() {
 				$("#mainContainer").html(data);
 			},
 			error : function() {
-				toastr.error("error!");
+				toastr.error("erreeor!");
 			}
 		})
 

@@ -60,4 +60,6 @@ public interface UserService {
     User getUserByUserName(String username);
 
     boolean usernameExists(String username);
+
+    boolean emailExists(String email);
 }

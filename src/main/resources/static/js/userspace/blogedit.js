@@ -74,15 +74,13 @@ $(function() {
 					// 成功后，重定向
 					window.location = data.body;
 				} else {
-					toastr.error("error!"+data.message);
+					toastr.error("错误："+data.message);
 				}
 
 			},
 			error : function() {
-				toastr.error("error!");
+				toastr.error("错误！");
 			}
 		})
 	})
-
-
 });

@@ -22,6 +22,11 @@ buildscript {
     }
 }
 
+bootRun {
+//开启页面热加载功能
+    addResources = true
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'org.springframework.boot'
@@ -65,4 +70,6 @@ dependencies {
     compile('es.nitaur.markdown:txtmark:0.16')
     // 添加  Spring Security 依赖
     compile('org.springframework.boot:spring-boot-starter-security')
+    // 添加  Spring 热部署 依赖
+    compile("org.springframework.boot:spring-boot-devtools")
 }

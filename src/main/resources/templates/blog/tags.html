@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<div id="mainContainer" class="container">
+    <div id="mainContainerRepleace" class="row">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th data-field="id">标签ID</th>
+                <th data-field="name">标签名称</th>
+                <th data-field="username">创建用户</th>
+                <th data-field="operation">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr  th:each="tags : ${adminTags}">
+                <td th:text="${tags.id}">1</td>
+                <td th:text="${tags.tags}">1</td>
+                <td th:text="${tags.user.name}">1</td>
+                <td>
+                    <div>
+                        <a class="tags-delete-admin" role="button"
+                           th:attr="blogId=*{tags.id}"> <i class="fa fa-times"
+                                                                  aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+        <div th:replace="~{fragments/page :: page}">...</div>
+
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script src="../../js/userspace/tags.js" th:src="@{/js/userspace/tags.js}"></script>
